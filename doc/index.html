@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="prism.css">
+  <title>PathpartoutAPI</title>
+  <header>
+    <h1>PathPartout API</h1>
+  </header>
+</head>
+<body>
+  <div class="container">
+    <aside>
+      <div class="nav">
+        <h2>Randonnées</h2>
+        <ul>
+          <li><a href="#all-randonnee">Toutes les randonnées</a></li>
+          <li><a href="#get-randonnee">Randonnée spécifique</a></li>
+          <li><a href="#only-gpx">GPX uniquement</a></li>
+        </ul>
+        <h2>Utilisateurs</h2>
+        <ul>
+          <li><a href="#create-account">Créer un utilisateur</a></li>
+          <li><a href="#details-account">Données utilisateur</a></li>
+        </ul>
+      </div>
+    </aside>
+    <div class="content">
+      <div class="content-section" id="all-randonnee">
+        <h2>Toutes les randonnées</h2>
+        <p>Cette route renvoi la liste des randonnées de l'API sans ordering. Elle nécessite une requête Post et un token reconnu par l'API.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/randonnees</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun</p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+        </div>
+        <h3>Response</h3>
+        <pre class="language-json"><code>
+        [
+            {
+                "id": 1,
+                "name": "Le Mont Veyrier",
+                "difficulty": 4,
+                "duration": 360,
+                "pos_elevation": 966,
+                "neg_elevation": 967,
+                "summit": 1289,
+                "start_point": {
+                "name": "Petit port à Albigny",
+                "coordinates": "45.903812, 6.159952"
+                },
+                "end_point": {
+                "name": "Retour au point de départ"
+                },
+                "tags": [
+                "Forêt",
+                "Ombre",
+                "Boucle"
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Les Clefs du tour de la Tournette",
+                "difficulty": 4,
+                "distance": 13.39,
+                "duration": 465,
+                "pos_elevation": 1379,
+                "neg_elevation": 1381,
+                "summit": 2341,
+                "start_point": {
+                "name": "Terminus de la route de la Tournette",
+                "coordinates": "45.843236, 6.312728"
+                },
+                "end_point": {
+                "name": "Retour au point de départ"
+                },
+                "tags": [
+                "Balcons",
+                "Boucle",
+                "Hors-piste"
+                ],
+                "images": [
+                "https://www.visorando.com/images/original/combe-des-fretes-visorando-125771.jpg",
+                "https://www.visorando.com/images/original/ligne-de-crete-visorando-125768.jpg",
+                "https://www.visorando.com/images/original/raide-couloir-visorando-125767.jpg",
+                "https://www.visorando.com/images/original/balcon-de-la-tournette-visorando-125755.jpg"
+                ]
+            },
+
+            ...
+
+        ]
+        </code></pre>
+      </div>
+      <div class="content-section" id="get-randonnee">
+        <h2>Randonnée Spécifique</h2>
+        <p>Cette route renvoi la randonnée et son GPX pour un id donné. Elle nécessite une requête Post et un token reconnu par l'API.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/randonnee/:id</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p><code class="language-text">:id</code> : ID de la randonnée souhaitée</p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+        </div>
+        <h3>Response</h3>
+        <pre class="language-json"><code>
+        [
+            {
+              "id": 3,
+              "name": "Promenade du Thiou",
+              "difficulty": 1,
+              "duration": 130,
+              "pos_elevation": 46,
+              "neg_elevation": 46,
+              "start_point": {
+                "name": "Jardins de l'Europe",
+                "coordinates": "45.898454, 6.129089"
+              },
+              "end_point": {
+                "name": "Retour au point de départ"
+              },
+              "tags": [
+                "Rivière",
+                "Facile",
+                "En ville",
+                "Promenade",
+                "Chateau",
+                "Musée"
+              ],
+              "gpx": {
+                "type": "FeatureCollection",
+                "features": [
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                        6.129089,
+                        45.898454,
+                        444
+                      ]
+                    },
+                    "properties": {
+                      "time": "2021-02-20T16:50:23",
+                      "name": "Jardins de l'Europe"
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                        6.113028,
+                        45.899245,
+                        441
+                      ]
+                    },
+                    "properties": {
+                      "time": "2021-02-20T16:52:08",
+                      "name": "Traverser par le pont du"
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                        6.097352,
+                        45.908853,
+                        414
+                      ]
+                    },
+                    "properties": {
+                      "time": "2021-02-20T16:55:03",
+                      "name": "Jardins de l'Europe"
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                        6.129089,
+                        45.898454,
+                        444
+                      ]
+                    },
+                    "properties": {
+                      "time": "2021-02-20T16:59:43",
+                      "name": "Jardins de l'Europe"
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "MultiLineString",
+                      "coordinates": [
+                        [
+                          [
+                            6.129089,
+                            45.898454,
+                            444
+                          ],
+                          [
+                            6.128981,
+                            45.89861,
+                            444
+                          ],
+                          [
+                            6.128413,
+                            45.898431,
+                            444
+                          ],
+                          [
+                            6.127007,
+                            45.898767,
+                            443
+                          ],
+                          [
+                            6.126042,
+                            45.898707,
+                            444
+                          ],
+                          [
+                            6.124035,
+                            45.898984,
+                            444
+                          ],
+                          [
+                            6.123928,
+                            45.8992,
+                            443
+                          ],
+                          [
+                            6.123767,
+                            45.899163,
+                            443
+                          ],
+                          [
+                            6.123692,
+                            45.899387,
+                            443
+                          ],
+                          [
+                            6.122179,
+                            45.89873,
+                            444
+                          ],
+                          [
+                            6.121106,
+                            45.898648,
+                            443
+                          ],
+                          [
+                            6.120066,
+                            45.898416,
+                            442
+                          ],
+                          [
+                            6.11925,
+                            45.898118,
+                            443
+                          ],
+                          [
+                            6.117748,
+                            45.897117,
+                            443
+                          ],
+                          [
+                            6.117373,
+                            45.897072,
+                            442
+                          ],
+                          [
+                            6.116847,
+                            45.897177,
+                            442
+                          ],
+                          [
+                            6.115506,
+                            45.897953,
+                            442
+                          ],
+                          [
+                            6.115238,
+                            45.898304,
+                            441
+                          ],
+                          [
+                            6.114948,
+                            45.898424,
+                            441
+                          ],
+                          [
+                            6.113049,
+                            45.898767,
+                            442
+                          ],
+                          [
+                            6.112931,
+                            45.899028,
+                            441
+                          ],
+                          [
+                            6.113028,
+                            45.899245,
+                            441
+                          ],
+                          [
+                            6.112577,
+                            45.89935,
+                            441
+                          ],
+                          [
+                            6.112684,
+                            45.899536,
+                            441
+                          ],
+                          [
+                            6.112384,
+                            45.899969,
+                            441
+                          ],
+                          [
+                            6.111901,
+                            45.900148,
+                            442
+                          ],
+                          [
+                            6.111579,
+                            45.90044,
+                            442
+                          ],
+                          [
+                            6.111236,
+                            45.901283,
+                            443
+                          ],
+                          [
+                            6.11085,
+                            45.90147,
+                            443
+                          ],
+                          [
+                            6.110764,
+                            45.901455,
+                            444
+                          ],
+                          [
+                            6.109927,
+                            45.901933,
+                            451
+                          ],
+                          [
+                            6.109605,
+                            45.902045,
+                            455
+                          ],
+                          [
+                            6.10923,
+                            45.902037,
+                            460
+                          ],
+                          [
+                            6.108629,
+                            45.902754,
+                            457
+                          ],
+                          [
+                            6.107309,
+                            45.903508,
+                            451
+                          ],
+                          [
+                            6.106633,
+                            45.903829,
+                            450
+                          ],
+                          [
+                            6.106515,
+                            45.903814,
+                            451
+                          ],
+                          [
+                            6.106821,
+                            45.904154,
+                            443
+                          ],
+                          [
+                            6.107062,
+                            45.904375,
+                            441
+                          ],
+                          [
+                            6.106402,
+                            45.904775,
+                            440
+                          ],
+                          [
+                            6.106305,
+                            45.905203,
+                            438
+                          ],
+                          [
+                            6.106454,
+                            45.905715,
+                            438
+                          ],
+                          [
+                            6.106709,
+                            45.905857,
+                            438
+                          ],
+                          [
+                            6.106812,
+                            45.906156,
+                            439
+                          ],
+                          [
+                            6.106482,
+                            45.906397,
+                            438
+                          ],
+                          [
+                            6.105564,
+                            45.906341,
+                            435
+                          ],
+                          [
+                            6.104672,
+                            45.906767,
+                            433
+                          ],
+                          [
+                            6.103919,
+                            45.906976,
+                            431
+                          ],
+                          [
+                            6.10357,
+                            45.907813,
+                            428
+                          ],
+                          [
+                            6.103924,
+                            45.908008,
+                            429
+                          ],
+                          [
+                            6.102315,
+                            45.908204,
+                            422
+                          ],
+                          [
+                            6.101029,
+                            45.907925,
+                            421
+                          ],
+                          [
+                            6.099743,
+                            45.908024,
+                            420
+                          ],
+                          [
+                            6.098996,
+                            45.90819,
+                            418
+                          ],
+                          [
+                            6.09778,
+                            45.908643,
+                            414
+                          ],
+                          [
+                            6.097537,
+                            45.908744,
+                            413
+                          ],
+                          [
+                            6.097352,
+                            45.908853,
+                            414
+                          ],
+                          [
+                            6.097537,
+                            45.908744,
+                            413
+                          ],
+                          [
+                            6.09778,
+                            45.908643,
+                            414
+                          ],
+                          [
+                            6.098996,
+                            45.90819,
+                            418
+                          ],
+                          [
+                            6.099743,
+                            45.908024,
+                            420
+                          ],
+                          [
+                            6.101029,
+                            45.907925,
+                            421
+                          ],
+                          [
+                            6.102315,
+                            45.908204,
+                            422
+                          ],
+                          [
+                            6.103924,
+                            45.908008,
+                            429
+                          ],
+                          [
+                            6.10357,
+                            45.907813,
+                            428
+                          ],
+                          [
+                            6.103919,
+                            45.906976,
+                            431
+                          ],
+                          [
+                            6.104672,
+                            45.906767,
+                            433
+                          ],
+                          [
+                            6.105564,
+                            45.906341,
+                            435
+                          ],
+                          [
+                            6.106482,
+                            45.906397,
+                            438
+                          ],
+                          [
+                            6.106812,
+                            45.906156,
+                            439
+                          ],
+                          [
+                            6.106709,
+                            45.905857,
+                            438
+                          ],
+                          [
+                            6.106454,
+                            45.905715,
+                            438
+                          ],
+                          [
+                            6.106305,
+                            45.905203,
+                            438
+                          ],
+                          [
+                            6.106402,
+                            45.904775,
+                            440
+                          ],
+                          [
+                            6.107062,
+                            45.904375,
+                            441
+                          ],
+                          [
+                            6.106821,
+                            45.904154,
+                            443
+                          ],
+                          [
+                            6.106515,
+                            45.903814,
+                            451
+                          ],
+                          [
+                            6.106633,
+                            45.903829,
+                            450
+                          ],
+                          [
+                            6.107309,
+                            45.903508,
+                            451
+                          ],
+                          [
+                            6.108629,
+                            45.902754,
+                            457
+                          ],
+                          [
+                            6.10923,
+                            45.902037,
+                            460
+                          ],
+                          [
+                            6.109605,
+                            45.902045,
+                            455
+                          ],
+                          [
+                            6.109927,
+                            45.901933,
+                            451
+                          ],
+                          [
+                            6.110764,
+                            45.901455,
+                            444
+                          ],
+                          [
+                            6.11085,
+                            45.90147,
+                            443
+                          ],
+                          [
+                            6.111236,
+                            45.901283,
+                            443
+                          ],
+                          [
+                            6.111579,
+                            45.90044,
+                            442
+                          ],
+                          [
+                            6.111901,
+                            45.900148,
+                            442
+                          ],
+                          [
+                            6.112384,
+                            45.899969,
+                            441
+                          ],
+                          [
+                            6.112684,
+                            45.899536,
+                            441
+                          ],
+                          [
+                            6.112577,
+                            45.89935,
+                            441
+                          ],
+                          [
+                            6.113028,
+                            45.899245,
+                            441
+                          ],
+                          [
+                            6.112931,
+                            45.899028,
+                            441
+                          ],
+                          [
+                            6.113049,
+                            45.898767,
+                            442
+                          ],
+                          [
+                            6.114948,
+                            45.898424,
+                            441
+                          ],
+                          [
+                            6.115238,
+                            45.898304,
+                            441
+                          ],
+                          [
+                            6.115506,
+                            45.897953,
+                            442
+                          ],
+                          [
+                            6.116847,
+                            45.897177,
+                            442
+                          ],
+                          [
+                            6.117373,
+                            45.897072,
+                            442
+                          ],
+                          [
+                            6.117748,
+                            45.897117,
+                            443
+                          ],
+                          [
+                            6.11925,
+                            45.898118,
+                            443
+                          ],
+                          [
+                            6.120066,
+                            45.898416,
+                            442
+                          ],
+                          [
+                            6.121106,
+                            45.898648,
+                            443
+                          ],
+                          [
+                            6.122179,
+                            45.89873,
+                            444
+                          ],
+                          [
+                            6.123692,
+                            45.899387,
+                            443
+                          ],
+                          [
+                            6.123767,
+                            45.899163,
+                            443
+                          ],
+                          [
+                            6.123928,
+                            45.8992,
+                            443
+                          ],
+                          [
+                            6.124035,
+                            45.898984,
+                            444
+                          ],
+                          [
+                            6.126042,
+                            45.898707,
+                            444
+                          ],
+                          [
+                            6.127007,
+                            45.898767,
+                            443
+                          ],
+                          [
+                            6.128413,
+                            45.898431,
+                            444
+                          ],
+                          [
+                            6.128981,
+                            45.89861,
+                            444
+                          ],
+                          [
+                            6.129089,
+                            45.898454,
+                            444
+                          ]
+                        ]
+                      ]
+                    },
+                    "properties": {
+                      "name": "Promenade du Thiou"
+                    }
+                  }
+                ]
+              }
+            }
+        ]
+        </code></pre>
+      </div>
+      <div class="content-section" id="only-gpx">
+        <h2>GPX uniquement</h2>
+        <p>Cette route renvoi le fichier .GPX d'une randonnée donnée au format geojson. Elle nécessite une requête Post et un token reconnu par l'API.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/randonnee/:id/gpx</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p><code class="language-text">:id</code> : ID de la randonnée souhaitée</p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+        </div>
+        <h3>Response</h3>
+        <pre class="language-json"><code>
+            {
+                "type": "FeatureCollection",
+                "features": [
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                        6.129089,
+                        45.898454,
+                        444
+                      ]
+                    },
+                    "properties": {
+                      "time": "2021-02-20T16:50:23",
+                      "name": "Jardins de l'Europe"
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                        6.113028,
+                        45.899245,
+                        441
+                      ]
+                    },
+                    "properties": {
+                      "time": "2021-02-20T16:52:08",
+                      "name": "Traverser par le pont du"
+                    }
+                  },
+                  {
+                    "type": "Feature",
+                    "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                        6.097352,
+                        45.908853,
+                        414
+                      ]
+                    },
+                    "properties": {
+                      "time": "2021-02-20T16:55:03",
+                      "name": "Jardins de l'Europe"
+                    }
+                  },
+
+                  ...
+
+                ]
+            }
+        </code></pre>
+      </div>
+      <div class="content-section" id="create-account">
+        <h2>Créer un utilisateur</h2>
+        <p>Cette route permet de créer un compte. Le mot de passe envoyé est hashé à l'aide de bcrypt pour être ensuite stocké en base.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/user/create</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>1</strong>)</p>
+            <p class="request-body"><code class="language-text">email</code> : adresse email saisie par l'utilisateur</p>
+            <p class="request-body"><code class="language-text">password</code> : mot de passe saisi par l'utilisateur</p>
+        </div>
+        <h3>Response</h3>
+        <pre class="language-json"><code>
+        {
+            "success": "Utilisateur crée.",
+            "userID": "603517e4ef23520af406fc46" <- ID de l'utilisateur crée à l'issue de la requête
+        }
+        </code></pre>
+      </div>
+      <div class="content-section" id="details-account">
+        <h2>Données utilisateur</h2>
+        <p>Cette route permet de récupérer les données d'un utilisateur pour un id utilisateur donné.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/user/get</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>1</strong>)</p>
+            <p class="request-body"><code class="language-text">userId</code> : ID de l'utilisateur cible.</p>
+        </div>
+        <h3>Response</h3>
+        <pre class="language-json"><code>
+        [
+            {
+              "_id": "603517e4ef23520af406fc46",
+              "firstname": "",
+              "lastname": "",
+              "title": "Nouvel utilisateur de PathPartout",
+              "mail": "api@test.fr",
+              "password": "$2b$10$EjiIDUOHItHP6teSLdnGWOhjTSORW7yGA23xE4k3YFTPlnrZyX64m",
+              "privilegeLevel": 2,
+              "photoUrl": "",
+              "avatar": [],
+              "userData": []
+            }
+        ]
+        </code></pre>
+      </div>
+    </div>
+  </div>
+  <script src="prism.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+
+*{
+  padding:0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+header{
+  border-bottom: solid 1px lightgrey;
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  z-index: 100;
+  background: linear-gradient(to right, #2AB7F6,#5EC8F8, #CAE67B);
+  color: white;
+}
+
+.container{
+  display: flex;
+}
+
+aside .nav{
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  display: block;
+  padding: 40px;
+  width: 200px;
+  overflow-y: scroll;
+}
+
+aside .nav h2{
+  margin-bottom: 12px;
+}
+
+aside .nav ul{
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+aside .nav li{
+  margin: 10px 0px;
+}
+
+aside .nav li a{
+  text-decoration: none;
+  color: black;
+}
+
+aside .nav li a:hover{
+  color: #5EC8F8
+}
+
+.content{
+  padding: 40px;
+  max-width: 960px;
+  flex-grow: 1;
+  margin: 0px auto 60px
+}
+
+.content h2{
+  font-weight: 800; 
+  margin-bottom: 20px;
+}
+
+.post{
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background-color: #ff5c33;
+}
+
+.content-section{
+    padding-top: 80px;
+}
+
+.content-section h3{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.content-section p{
+    padding: 10px 0
+}
+
+.content-section .request-body:first-child{
+    border-top: unset;
+}
+
+.content-section .request-body{
+    border-top: solid 1px lightgray;
+}
