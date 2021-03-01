@@ -94,3 +94,39 @@ aside .nav li a:hover{
 .content-section .request-body{
     border-top: solid 1px lightgray;
 }
+
+.content-section .accordion-arrow{
+  height: 8px;
+  width: auto;
+  margin-left: 10px;
+  transform: rotate(0deg);
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+    -ms-transition: -ms-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;  
+}
+
+.content-section .accordion-arrow.active{
+  transform: rotate(180deg);
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  -ms-transition: -ms-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;  
+}
+
+.content-section .response-head{
+  display: flex;
+  align-items: baseline;
+}
+
+
+.content-section .code-block{
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  transition: max-height 0.5s ease-out;
+}
+
+.content-section .code-block.active{
+  display: block;
+  max-height: 800px;
+  transition: max-height 0.5s ease-in;
+}

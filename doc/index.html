@@ -39,8 +39,12 @@
         <div>
             <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
         </div>
-        <h3>Response</h3>
-        <pre class="language-json"><code>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json">
+          <code>
         [
             {
                 "id": 1,
@@ -91,11 +95,12 @@
                 "https://www.visorando.com/images/original/balcon-de-la-tournette-visorando-125755.jpg"
                 ]
             },
-
+            
             ...
 
         ]
-        </code></pre>
+        </code>
+      </pre>
       </div>
       <div class="content-section" id="get-randonnee">
         <h2>Randonnée Spécifique</h2>
@@ -108,8 +113,11 @@
         <div>
             <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
         </div>
-        <h3>Response</h3>
-        <pre class="language-json"><code>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
         [
             {
               "id": 3,
@@ -791,8 +799,11 @@
         <div>
             <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
         </div>
-        <h3>Response</h3>
-        <pre class="language-json"><code>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
             {
                 "type": "FeatureCollection",
                 "features": [
@@ -861,8 +872,11 @@
             <p class="request-body"><code class="language-text">email</code> : adresse email saisie par l'utilisateur</p>
             <p class="request-body"><code class="language-text">password</code> : mot de passe saisi par l'utilisateur</p>
         </div>
-        <h3>Response</h3>
-        <pre class="language-json"><code>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
         {
             "success": "Utilisateur crée.",
             "userID": "603517e4ef23520af406fc46" <- ID de l'utilisateur crée à l'issue de la requête
@@ -881,8 +895,11 @@
             <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>1</strong>)</p>
             <p class="request-body"><code class="language-text">userId</code> : ID de l'utilisateur cible.</p>
         </div>
-        <h3>Response</h3>
-        <pre class="language-json"><code>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
         [
             {
               "_id": "603517e4ef23520af406fc46",
@@ -902,5 +919,15 @@
     </div>
   </div>
   <script src="prism.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function(){
+      $('.response-head').on("click", function(){
+        $(this).children('.accordion-arrow').toggleClass('active');
+        $(this).next('pre').toggleClass('active');
+      })
+    })
+    
+  </script>
 </body>
 </html>
