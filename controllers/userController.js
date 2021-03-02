@@ -52,13 +52,23 @@ exports.create_new_user = function(req, res, user){
                 })
             }
         }
-    })
-       
-   
-        
-    
+    }) 
+};
+
+exports.update_user = function(req, res){
+    db.collection(COLLLECTION_NAME).findOneAndUpdate({ _id: new ObjectId(req.body.id) },{ $set: req.body }, function(err, result){
+        if(err){
+            res.json(err)
+        }
+        else{
+            db.collection(COLLLECTION_NAME).findOneAndUpdate({ _id: new ObjectId(req.body.id) }, { $unset: { token: "", id: ""} },function(err, result){
+                if(err){
+                    res.json({ "error": "Impossible de supprimer les champs parasite."})
+                }
+                res.send(200, { success: "Utilisateur modifié." });
+            })
+        }
+    })  
 
     
-
-    // db.collection(COLLLECTION_NAME).insert()
 }

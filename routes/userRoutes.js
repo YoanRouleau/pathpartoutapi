@@ -31,6 +31,12 @@ module.exports = function(app){
         user.create_new_user(request, response, userData);
     })
     
+
+    app.put('/user/update', urlencodedParser, auth.checkUserPrivilege, function(request, response, next){
+        user.update_user(request, response)
+        // response.json(request.body);
+    })
+
     // app.post('/api/testpost', urlencodedParser, function(req, res){
     //     console.log(req.body.username);  
     //     res.send("hello");
