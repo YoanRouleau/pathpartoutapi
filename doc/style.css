@@ -68,11 +68,20 @@ aside .nav li a:hover{
 }
 
 .post{
-    color: white;
-    padding: 2px 5px;
-    border-radius: 5px;
-    background-color: #ff5c33;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: #ff5c33;
 }
+
+.put{
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: #15b6cf;
+}
+
+
 
 .content-section{
     padding-top: 80px;

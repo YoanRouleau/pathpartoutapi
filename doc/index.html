@@ -23,7 +23,8 @@
         <h2>Utilisateurs</h2>
         <ul>
           <li><a href="#create-account">Créer un utilisateur</a></li>
-          <li><a href="#details-account">Données utilisateur</a></li>
+          <li><a href="#details-account">Récupérer données utilisateur</a></li>
+          <li><a href="#update-account">Mettre à jour un utilisateur</a></li>
         </ul>
       </div>
     </aside>
@@ -884,7 +885,7 @@
         </code></pre>
       </div>
       <div class="content-section" id="details-account">
-        <h2>Données utilisateur</h2>
+        <h2>Récupérer données utilisateur</h2>
         <p>Cette route permet de récupérer les données d'un utilisateur pour un id utilisateur donné.</p>
         <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/user/get</code></pre>
         <p><code class="language-text">Content-type</code> : application/json</p>
@@ -916,8 +917,35 @@
         ]
         </code></pre>
       </div>
+
+      <div class="content-section" id="update-account">
+        <h2>Mettre à jour un utilisateur</h2>
+        <p>Cette route permet 2 choses : mettre un jour un champ existant (si occurence entre un paramètre de la requête et le champ en BDD) OU créer un champ inexistant pour un utilisateur donné (si le champ envoyé en post est inconnu)</p>
+        <pre class="language-shell"><span class="put">PUT</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/user/update</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>1</strong>)</p>
+            <p class="request-body"><code class="language-text">id</code> : ID de l'utilisateur cible.</p>
+            <p class="request-body"><code class="language-text">nom-du-champ</code> : Champ à modifier. (champs existants : firstname, lastname, title, mail, password, privilegeLevel, photoUrl, avatar (array), userData (array)</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+        {
+          "success": "Utilisateur modifié."
+        }
+        </code></pre>
+      </div>
     </div>
   </div>
+
+
+
   <script src="prism.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script>
