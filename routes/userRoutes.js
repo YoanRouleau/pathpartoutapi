@@ -7,14 +7,7 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 module.exports = function(app){
     var user = require("../controllers/userController");
-    var auth = require("../controllers/authController");
-
-    app.use(express.static("doc"));
-
-    app.get('/', function(request, response){
-        response.sendFile('index.html', { root: 'doc' });
-    })
-    
+    var auth = require("../controllers/authController"); 
 
     app.post('/user/get', urlencodedParser, auth.checkVisitorPrivilege, function(request, response, next){
         var id = request.body.userId;
