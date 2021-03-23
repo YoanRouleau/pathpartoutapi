@@ -2,7 +2,7 @@
 //EXPRESS
 var express = require('express');
 var app = express();
-var port = process.env.port;
+var port = process.env.port || 3000;
 
 var bodyParser = require('body-parser')
 
@@ -36,5 +36,6 @@ basicRoutes(app);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+console.log(`App running on port ${ port }.`)
 app.listen(port)
 
