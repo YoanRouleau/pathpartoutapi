@@ -68,7 +68,38 @@ exports.update_user = function(req, res){
                 res.send(200, { success: "Utilisateur modifié." });
             })
         }
-    })  
+    })      
+}
 
-    
+exports.login_user = function(req, res){
+    db.collection(COLLLECTION_NAME).findOne({ "mail": req.body.email }, function(err, user){
+        if(err) 
+            throw err;
+        if(!user)
+            res.json( { "error" : "Adresse email ou mot de passe invalide." } );
+        else{
+            bcrypt.compare(req.body.password, user.password, function(err, samatch){
+                if(err)
+                    res.json(err)
+                if(samatch){
+                    var callbackToken = '';
+                    if(user.privilegeLevel === 3){
+                        callbackToken = "D5rJacI7prvxSLmW4dfuCY8g1czx9YoK"
+                    } 
+                    else{
+                        callbackToken = "9yV2FdhMyUy9rqwk6UI7qpmCiy4JgnMS"
+                    }
+                    res.send(200, { 
+                        success: "Le mot de passe est bon.",
+                        userId: user._id,
+                        token: callbackToken
+                    });
+                }
+                else{
+                    res.json( { "error" : "Adresse email ou mot de passe invalide." } );
+                }
+            })
+            // res.json(userToBeChecked);
+        }
+    })
 }

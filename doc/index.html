@@ -23,6 +23,7 @@
         <h2>Utilisateurs</h2>
         <ul>
           <li><a href="#create-account">Créer un utilisateur</a></li>
+          <li><a href="#login-account">Se connecter</a></li>
           <li><a href="#details-account">Récupérer données utilisateur</a></li>
           <li><a href="#update-account">Mettre à jour un utilisateur</a></li>
         </ul>
@@ -882,6 +883,31 @@
             "success": "Utilisateur crée.",
             "userID": "603517e4ef23520af406fc46" <- ID de l'utilisateur crée à l'issue de la requête
         }
+        </code></pre>
+      </div>
+      <div class="content-section" id="login-account">
+        <h2>Se connecter</h2>
+        <p>Cette route permet de se connecter. Pour se faire, il suffit de communiquer à l'API un combo email-password, et si l'utilisateur interrogé est enregistré en base, alors on communique un nouveau token d'accès avec un privilège supérieure.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/user/login</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>1</strong>)</p>
+            <p class="request-body"><code class="language-text">email</code> : adresse email du compte à interroger</p>
+            <p class="request-body"><code class="language-text">password</code> : mot de passe du compte à interroger</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          {
+            "success": "Le mot de passe est bon.",
+            "userId": "606f740d53b0db3c8cc064c1",
+            "token": "9yV2FdhMyUy9rqwk6UI7qpmCiy4JgnMS"
+          }
         </code></pre>
       </div>
       <div class="content-section" id="details-account">

@@ -26,8 +26,17 @@ module.exports = function(app){
     
 
     app.put('/user/update', urlencodedParser, auth.checkUserPrivilege, function(request, response, next){
-        user.update_user(request, response)
+        user.update_user(request, response);
         // response.json(request.body);
+    })
+
+    app.post('/user/login', urlencodedParser, auth.checkVisitorPrivilege, function(request, response, next){
+        var userMail = {
+            'email': request.body.email,
+            'password': request.body.password,
+        }
+        // response.json(userMail);
+        user.login_user(request, response);
     })
 
     // app.post('/api/testpost', urlencodedParser, function(req, res){
