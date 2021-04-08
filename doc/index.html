@@ -32,7 +32,7 @@
       <div class="content-section" id="all-randonnee">
         <h2>Toutes les randonnées</h2>
         <p>Cette route renvoi la liste des randonnées de l'API sans ordering. Elle nécessite une requête Post et un token reconnu par l'API.</p>
-        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/randonnees</code></pre>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/randonnees</code></pre>
         <p><code class="language-text">Content-type</code> : application/json</p>
         <h3>Request parameters</h3>
         <p>- Aucun</p>
@@ -106,7 +106,7 @@
       <div class="content-section" id="get-randonnee">
         <h2>Randonnée Spécifique</h2>
         <p>Cette route renvoi la randonnée et son GPX pour un id donné. Elle nécessite une requête Post et un token reconnu par l'API.</p>
-        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/randonnee/:id</code></pre>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/randonnee/:id</code></pre>
         <p><code class="language-text">Content-type</code> : application/json</p>
         <h3>Request parameters</h3>
         <p><code class="language-text">:id</code> : ID de la randonnée souhaitée</p>
@@ -792,7 +792,7 @@
       <div class="content-section" id="only-gpx">
         <h2>GPX uniquement</h2>
         <p>Cette route renvoi le fichier .GPX d'une randonnée donnée au format geojson. Elle nécessite une requête Post et un token reconnu par l'API.</p>
-        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/randonnee/:id/gpx</code></pre>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/randonnee/:id/gpx</code></pre>
         <p><code class="language-text">Content-type</code> : application/json</p>
         <h3>Request parameters</h3>
         <p><code class="language-text">:id</code> : ID de la randonnée souhaitée</p>
@@ -863,7 +863,7 @@
       <div class="content-section" id="create-account">
         <h2>Créer un utilisateur</h2>
         <p>Cette route permet de créer un compte. Le mot de passe envoyé est hashé à l'aide de bcrypt pour être ensuite stocké en base.</p>
-        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/user/create</code></pre>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/user/create</code></pre>
         <p><code class="language-text">Content-type</code> : application/json</p>
         <h3>Request parameters</h3>
         <p>- Aucun </p>
@@ -887,7 +887,7 @@
       <div class="content-section" id="details-account">
         <h2>Récupérer données utilisateur</h2>
         <p>Cette route permet de récupérer les données d'un utilisateur pour un id utilisateur donné.</p>
-        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/user/get</code></pre>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/user/get</code></pre>
         <p><code class="language-text">Content-type</code> : application/json</p>
         <h3>Request parameters</h3>
         <p>- Aucun </p>
@@ -921,7 +921,7 @@
       <div class="content-section" id="update-account">
         <h2>Mettre à jour un utilisateur</h2>
         <p>Cette route permet 2 choses : mettre un jour un champ existant (si occurence entre un paramètre de la requête et le champ en BDD) OU créer un champ inexistant pour un utilisateur donné (si le champ envoyé en post est inconnu)</p>
-        <pre class="language-shell"><span class="put">PUT</span> <code class="language-shell">http://iutannecy-deptinfo.fr:3000/user/update</code></pre>
+        <pre class="language-shell"><span class="put">PUT</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/user/update</code></pre>
         <p><code class="language-text">Content-type</code> : application/json</p>
         <h3>Request parameters</h3>
         <p>- Aucun </p>
