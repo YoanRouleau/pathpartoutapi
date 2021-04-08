@@ -1,4 +1,4 @@
 ### Pathpartout API Repository
 
-Documentation: http://iutannecy-deptinfo.fr:3000/
+Documentation: https://pathpartoutapi.herokuapp.com
 Hosted using: PM2
