@@ -37,6 +37,7 @@ exports.get_sorties = function(req, res){
                     'randonneeId': 1,
                     'userId': 1,
                     'date': 1,
+                    'performances': 1,
                     'randonnee.name': 1,
                     'randonnee.images': 1,
                     'randonne.startpoint.coordinates': 1,
