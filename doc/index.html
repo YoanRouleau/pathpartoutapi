@@ -27,6 +27,17 @@
           <li><a href="#details-account">Récupérer données utilisateur</a></li>
           <li><a href="#update-account">Mettre à jour un utilisateur</a></li>
         </ul>
+        <h2>Sorties</h2>
+        <ul>
+          <li><a href="#create-sortie">Créer une sortie</a></li>
+          <li><a href="#all-sortie">Toutes les sorties</a></li>
+        </ul>
+        <h2>Avis</h2>
+        <ul>
+          <li><a href="#create-avis">Créer un avis</a></li>
+          <li><a href="#all-avis-randonnee">Récupérer les avis par randonnée</a></li>
+          <li><a href="#all-avis-user">Récupérer les avis par utilisateur</a></li>
+        </ul>
       </div>
     </aside>
     <div class="content">
@@ -943,7 +954,6 @@
         ]
         </code></pre>
       </div>
-
       <div class="content-section" id="update-account">
         <h2>Mettre à jour un utilisateur</h2>
         <p>Cette route permet 2 choses : mettre un jour un champ existant (si occurence entre un paramètre de la requête et le champ en BDD) OU créer un champ inexistant pour un utilisateur donné (si le champ envoyé en post est inconnu)</p>
@@ -953,7 +963,7 @@
         <p>- Aucun </p>
         <h3>Request body</h3>
         <div>
-            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>1</strong>)</p>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
             <p class="request-body"><code class="language-text">id</code> : ID de l'utilisateur cible.</p>
             <p class="request-body"><code class="language-text">nom-du-champ</code> : Champ à modifier. (champs existants : firstname, lastname, title, mail, password, privilegeLevel, photoUrl, avatar (array), userData (array)</p>
         </div>
@@ -967,9 +977,295 @@
         }
         </code></pre>
       </div>
+      <div class="content-section" id="create-sortie">
+        <h2>Créer une sortie</h2>
+        <p>Cette route permet de créer une sortie. Il suffit d'envoyer à l'API un ID utilisateur et un ID de randonnée.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/sortie/create</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+            <p class="request-body"><code class="language-text">randonneeId</code> : ID de la randonnée</p>
+            <p class="request-body"><code class="language-text">userId</code> : ID de l'utilisateur</p>
+            <p class="request-body"><code class="language-text">performances</code> : Performances du randonneur <i>(string)[nombreDePas, temps]</i></p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          {
+            "success": "Sortie créée"
+          }
+        </code></pre>
+      </div>
+      <div class="content-section" id="all-sortie">
+        <h2>Toutes les sortie</h2>
+        <p>Cette route permet de récupérer toutes les sorties. Il suffit d'envoyer à l'API un ID utilisateur et un ID de randonnée.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/sortie/all</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          [
+            {
+              "_id": "6044f1d988a3a0056cacb0e4",
+              "randonneeId": 2,
+              "userId": "60341ab20a00d509246a5b76",
+              "date": "2021-03-06T23:00:00.000Z",
+              "randonnee": [
+                {
+                  "name": "Les Clefs du tour de la Tournette",
+                  "images": [
+                    "https://www.visorando.com/images/original/combe-des-fretes-visorando-125771.jpg",
+                    "https://www.visorando.com/images/original/ligne-de-crete-visorando-125768.jpg",
+                    "https://www.visorando.com/images/original/raide-couloir-visorando-125767.jpg",
+                    "https://www.visorando.com/images/original/balcon-de-la-tournette-visorando-125755.jpg"
+                  ]
+                }
+              ],
+              "user": [
+                {
+                  "firstname": "Yoan",
+                  "lastname": "",
+                  "mail": "yoan-rouleau@live.fr",
+                  "photoUrl": ""
+                }
+              ]
+            },
+            {
+              "_id": "6044f87388a3a0056cacb0e5",
+              "randonneeId": 3,
+              "userId": "60341ab20a00d509246a5b76",
+              "date": "2021-03-06T23:00:00.000Z",
+              "randonnee": [
+                {
+                  "name": "Promenade du Thiou",
+                  "images": [
+                    "https://www.visorando.com/images/inter/m-pres-de-l-ancien-lavoir-visorando-128000.jpg",
+                    "https://www.visorando.com/images/inter/m-passerelle-au-dessus-de-la-chute-d-eau-visorando-73310.jpg",
+                    "https://www.visorando.com/randonnee-promenade-du-thiou/#component=ajax&task=showPhoto&idPhoto=73308",
+                    "https://www.caracolons-ensemble.com/images/hautesavoie/annecy/le-thiou/lachenal.JPG"
+                  ]
+                }
+              ],
+              "user": [
+                {
+                  "firstname": "Yoan",
+                  "lastname": "",
+                  "mail": "yoan-rouleau@live.fr",
+                  "photoUrl": ""
+                }
+              ]
+            },
+            {
+              "_id": "607190ce9a8ab03f4cc203d9",
+              "randonneeId": 2,
+              "userId": "60341ab20a00d509246a5b76",
+              "date": "2021-04-10T11:49:34.612Z",
+              "performances": "temps: 00:00 ; km: 12.4",
+              "randonnee": [
+                {
+                  "name": "Les Clefs du tour de la Tournette",
+                  "images": [
+                    "https://www.visorando.com/images/original/combe-des-fretes-visorando-125771.jpg",
+                    "https://www.visorando.com/images/original/ligne-de-crete-visorando-125768.jpg",
+                    "https://www.visorando.com/images/original/raide-couloir-visorando-125767.jpg",
+                    "https://www.visorando.com/images/original/balcon-de-la-tournette-visorando-125755.jpg"
+                  ]
+                }
+              ],
+              "user": [
+                {
+                  "firstname": "Yoan",
+                  "lastname": "",
+                  "mail": "yoan-rouleau@live.fr",
+                  "photoUrl": ""
+                }
+              ]
+            },
+            {
+              "_id": "6071992ed6963c0022fa32ac",
+              "randonneeId": 6,
+              "userId": "603517e4ef23520af406fc46",
+              "date": "2021-04-10T12:25:18.448Z",
+              "performances": "[0, 0:00:16]",
+              "randonnee": [
+                {
+                  "name": "Pieds des Dents de Lanfon et Pointe de Talamarche",
+                  "images": [
+                    "https://www.visorando.com/images/original/arete-de-taillefer-le-lac-d-annecy-visorando-100403.jpg",
+                    "https://www.visorando.com/images/original/arete-de-taillefer-duingt-visorando-100404.jpg",
+                    "https://www.visorando.com/images/original/les-dents-de-lanfon-visorando-55861.jpg",
+                    "https://www.visorando.com/images/original/lac-de-la-descente-visorando-148997.jpg"
+                  ]
+                }
+              ],
+              "user": [
+                {
+                  "firstname": "",
+                  "lastname": "",
+                  "mail": "api@test.fr",
+                  "photoUrl": ""
+                }
+              ]
+            },
+            {
+              "_id": "607313f7fe1f0f00227232a5",
+              "randonneeId": 6,
+              "userId": "6071d4dd36a7d3002202803c",
+              "date": "2021-04-11T15:21:27.706Z",
+              "performances": "[0, 0:00:08]",
+              "randonnee": [
+                {
+                  "name": "Pieds des Dents de Lanfon et Pointe de Talamarche",
+                  "images": [
+                    "https://www.visorando.com/images/original/arete-de-taillefer-le-lac-d-annecy-visorando-100403.jpg",
+                    "https://www.visorando.com/images/original/arete-de-taillefer-duingt-visorando-100404.jpg",
+                    "https://www.visorando.com/images/original/les-dents-de-lanfon-visorando-55861.jpg",
+                    "https://www.visorando.com/images/original/lac-de-la-descente-visorando-148997.jpg"
+                  ]
+                }
+              ],
+              "user": [
+                {
+                  "firstname": "",
+                  "lastname": "",
+                  "mail": "v@v.fr",
+                  "photoUrl": ""
+                }
+              ]
+            },
+            {
+              "_id": "60731476fe1f0f00227232a6",
+              "randonneeId": 6,
+              "userId": "6071d4dd36a7d3002202803c",
+              "date": "2021-04-11T15:23:34.871Z",
+              "performances": "[0, 0:00:04]",
+              "randonnee": [
+                {
+                  "name": "Pieds des Dents de Lanfon et Pointe de Talamarche",
+                  "images": [
+                    "https://www.visorando.com/images/original/arete-de-taillefer-le-lac-d-annecy-visorando-100403.jpg",
+                    "https://www.visorando.com/images/original/arete-de-taillefer-duingt-visorando-100404.jpg",
+                    "https://www.visorando.com/images/original/les-dents-de-lanfon-visorando-55861.jpg",
+                    "https://www.visorando.com/images/original/lac-de-la-descente-visorando-148997.jpg"
+                  ]
+                }
+              ],
+              "user": [
+                {
+                  "firstname": "",
+                  "lastname": "",
+                  "mail": "v@v.fr",
+                  "photoUrl": ""
+                }
+              ]
+            }
+          ]
+        </code></pre>
+      </div>
+      <div class="content-section" id="create-avis">
+        <h2>Créer un avis</h2>
+        <p>Cette route permet de créer un avis à l'aide d'un ID de randonnée et d'un ID utilisateur. Il faut également fournir un commentaire et une note.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/avis/create</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+            <p class="request-body"><code class="language-text">randonneeId</code> : ID de la randonnée</p>
+            <p class="request-body"><code class="language-text">userId</code> : ID de l'utilisateur</p>
+            <p class="request-body"><code class="language-text">note</code> : Note comprise entre 0 et 5</p>
+            <p class="request-body"><code class="language-text">avis</code> : L'avis complet.</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          {
+            "success": "L'avis a bien été crée."
+          }
+        </code></pre>
+      </div>
+      <div class="content-section" id="all-avis-randonnee">
+        <h2>Récupérer les avis par randonnée</h2>
+        <p>Cette route permet de tous les avis publiés pour une randonnée donnée.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/avis/get/randonnee</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+            <p class="request-body"><code class="language-text">randonneeId</code> : ID de la randonnée</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          [
+            {
+              "_id": "6073f3acfae6044c54563fe2",
+              "userId": "60341ab20a00d509246a5b76",
+              "randonneeId": "2",
+              "note": "4",
+              "avis": "Superbe randonnée avec du beau temps.",
+              "userData": [
+                {
+                  "firstname": "Yoan",
+                  "lastname": "",
+                  "title": "Nouvel utilisateur de PathPartout",
+                  "photoUrl": ""
+                }
+              ]
+            }
+          ]
+        </code></pre>
+      </div>
+      <div class="content-section" id="all-avis-user">
+        <h2>Récupérer les avis par utilisateur</h2>
+        <p>Cette route permet de tous les avis publiés pour un utilisateur donné.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/avis/get/randonnee</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+            <p class="request-body"><code class="language-text">userId</code> : ID de l'utilisateur.</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          [
+            {
+              "_id": "6073fc93e6411244247d3fa5",
+              "userId": "6071d37636a7d3002202803b",
+              "randonneeId": "6",
+              "note": "5",
+              "avis": "C'était très difficile, mais ça en valait la peine !"
+            }
+          ]
+        </code></pre>
+      </div>
     </div>
   </div>
-
 
 
   <script src="prism.js"></script>

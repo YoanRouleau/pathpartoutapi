@@ -15,6 +15,8 @@ const dbName = 'PathPartoutApp';
 var randonneeRoutes = require('./routes/randonneeRoutes');
 var userRoutes = require('./routes/userRoutes');
 var sortieRoutes = require('./routes/sortieRoutes');
+var avisRoutes = require('./routes/avisRoutes');
+
 var basicRoutes = require('./routes/basicRoutes');
 
 MongoClient.connect(url, function(err, client){
@@ -31,6 +33,8 @@ module.exports = function(callback){
 randonneeRoutes(app);
 userRoutes(app);
 sortieRoutes(app);
+avisRoutes(app);
+
 basicRoutes(app);
 
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -8,7 +8,7 @@ const COLLLECTION_NAME = "sortie";
 
 exports.get_sorties = function(req, res){
    
-    db.collection("sortie").aggregate(
+    db.collection(COLLLECTION_NAME).aggregate(
         [ 
             {
                 '$addFields' : {
@@ -61,7 +61,7 @@ exports.create_sortie = function(req, res, sortieData){
             res.send(err)
         else
             res.json(200, {
-                "succes": "Sortie créee"
+                "success": "Sortie créée"
             })
     })
 }
