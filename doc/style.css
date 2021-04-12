@@ -4,10 +4,10 @@
   padding:0;
   margin: 0;
   font-family: sans-serif;
+  color: white;
 }
 
 header{
-  border-bottom: solid 1px lightgrey;
   position: fixed;
   height: 60px;
   width: 100%;
@@ -21,6 +21,7 @@ header{
 
 .container{
   display: flex;
+  background-color: #141414;
 }
 
 aside .nav{
@@ -39,7 +40,7 @@ aside .nav h2{
 
 aside .nav ul{
   list-style: none;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 aside .nav li{
@@ -48,7 +49,6 @@ aside .nav li{
 
 aside .nav li a{
   text-decoration: none;
-  color: black;
 }
 
 aside .nav li a:hover{
