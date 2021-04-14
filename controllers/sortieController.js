@@ -40,7 +40,7 @@ exports.get_sorties = function(req, res){
                     'performances': 1,
                     'randonnee.name': 1,
                     'randonnee.images': 1,
-                    // 'randonnee.startpoint.coordinates': 1,
+                    'randonnee.distance': 1,
                     'randonnee.difficulty': 1,
                     'user.firstname': 1,
                     'user.lastname': 1,
