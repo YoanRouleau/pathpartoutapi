@@ -26,5 +26,6 @@ module.exports = function(app){
 
     app.post('/sortie/get/user', urlencodedParser, auth.checkUserPrivilege, function(request, response){
         sortie.get_sorties_by_user(request, response);
+        
     });
 };
