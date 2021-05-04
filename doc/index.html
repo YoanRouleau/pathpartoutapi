@@ -31,6 +31,7 @@
         <ul>
           <li><a href="#create-sortie">Créer une sortie</a></li>
           <li><a href="#all-sortie">Toutes les sorties</a></li>
+          <li><a href="#sortie-by-user">Récupérer les sorties par utilisateur</a></li>
         </ul>
         <h2>Avis</h2>
         <ul>
@@ -1171,6 +1172,46 @@
                   "photoUrl": ""
                 }
               ]
+            }
+          ]
+        </code></pre>
+      </div>
+      <div class="content-section" id="sortie-by-user">
+        <h2>Récupérer les sorties par utilisateur</h2>
+        <p>Cette route permet de récupérer les sorties réalisé par un utilisateur donné. On utilise son userId.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/sortie/get/user</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+            <p class="request-body"><code class="language-text">userId</code> : ID de l'utilisateur.</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          [
+            {
+              "_id": "6044f1d988a3a0056cacb0e4",
+              "randonneeId": 2,
+              "userId": "60341ab20a00d509246a5b76",
+              "date": "2021-03-06T23:00:00.000Z"
+            },
+            {
+              "_id": "6044f87388a3a0056cacb0e5",
+              "randonneeId": 3,
+              "userId": "60341ab20a00d509246a5b76",
+              "date": "2021-03-06T23:00:00.000Z"
+            },
+            {
+              "_id": "607190ce9a8ab03f4cc203d9",
+              "randonneeId": 2,
+              "userId": "60341ab20a00d509246a5b76",
+              "date": "2021-04-10T11:49:34.612Z",
+              "performances": "temps: 00:00 ; km: 12.4"
             }
           ]
         </code></pre>
