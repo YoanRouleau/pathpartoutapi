@@ -66,3 +66,13 @@ exports.create_sortie = function(req, res, sortieData){
             })
     })
 }
+
+exports.get_sorties_by_user = function(req, res){
+    db.collection(COLLLECTION_NAME).find({ 'userId': req.body.userId }).toArray(function(err, sorties){
+        if(err) throw err;
+        if(!sorties.length)
+            res.json("Vous n'avez pas encore effectué de randonnées.")
+        else
+            res.json(sorties);
+    })
+}
