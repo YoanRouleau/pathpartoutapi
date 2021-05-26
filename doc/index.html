@@ -39,6 +39,11 @@
           <li><a href="#all-avis-randonnee">Récupérer les avis par randonnée</a></li>
           <li><a href="#all-avis-user">Récupérer les avis par utilisateur</a></li>
         </ul>
+        <h2>Achievements</h2>
+        <ul>
+          <li><a href="#list-achievements">Tous les achievements</a></li>
+          <li><a href="#achievements-user">Achievements débloqué par un utilisateur</a></li>
+        </ul>
       </div>
     </aside>
     <div class="content">
@@ -1301,6 +1306,101 @@
               "randonneeId": "6",
               "note": "5",
               "avis": "C'était très difficile, mais ça en valait la peine !"
+            }
+          ]
+        </code></pre>
+      </div>
+      <div class="content-section" id="list-achievements">
+        <h2>Tous les achievements</h2>
+        <p>Cette route permet de lister les achievements de l'application.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/achievements/list</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          [
+            {
+              "_id": "6099839249627d1a70194095",
+              "title": "Randonneur aguerri",
+              "requires": "Terminer 5 randonnées.",
+              "reward": "lunettes2"
+            },
+            {
+              "_id": "6099839249627d1a70194097",
+              "title": "Marathonien des montagnes",
+              "requires": "Terminer une randonnée 2 fois plus vite que le temps annoncé.",
+              "reward": "casquette2"
+            },
+            {
+              "_id": "6099839249627d1a70194098",
+              "title": "Conseiller",
+              "requires": "Laisser un avis sur 3 randonnées différentes",
+              "reward": "chapeau1"
+            },
+            {
+              "_id": "6099839249627d1a70194094",
+              "title": "Randonneur émergeant",
+              "requires": "Terminer 3 randonnées.",
+              "reward": "casquette1"
+            },
+            {
+              "_id": "6099839249627d1a70194096",
+              "title": "Randonneur expert",
+              "requires": "Terminer 10 randonnées.",
+              "reward": "lunettes2"
+            },
+            {
+              "_id": "6099839249627d1a70194093",
+              "title": "Randonneur du dimanche",
+              "requires": "Terminer une randonnée un dimanche.",
+              "reward": "lunettes1"
+            },
+            {
+              "_id": "60998f2649627d1a70194099",
+              "title": "Randonneur débutant",
+              "requires": "Réalisez votre première randonnée avec l'application Pathpartout !",
+              "reward": "chapeau0"
+            }
+          ]
+        </code></pre>
+      </div>
+      <div class="content-section" id="achievements-user">
+        <h2>Achievements débloqués par un utilisateur</h2>
+        <p>Cette route permet de récupérer les achievements débloqués par un utilisateur donné, à l'aide de son ID.</p>
+        <pre class="language-shell"><span class="post">POST</span> <code class="language-shell">https://pathpartoutapi.herokuapp.com/achievements/get/user</code></pre>
+        <p><code class="language-text">Content-type</code> : application/json</p>
+        <h3>Request parameters</h3>
+        <p>- Aucun </p>
+        <h3>Request body</h3>
+        <div>
+            <p class="request-body"><code class="language-text">token</code> : Token d'identification API (privilège requis : <strong>2</strong>)</p>
+        </div>
+        <div class="response-head">
+          <h3>Response</h3>
+          <img class="accordion-arrow" src="images/arrow.png" alt="">
+        </div>
+        <pre class="code-block language-json"><code>
+          [
+            {
+              "_id": "60aebbf6abba336d980eef2a",
+              "userId": "603517e4ef23520af406fc46",
+              "achievementId": "6099839249627d1a70194096",
+              "achievementUnlocked": [
+                {
+                  "_id": "6099839249627d1a70194096",
+                  "title": "Randonneur expert",
+                  "requires": "Terminer 10 randonnées.",
+                  "reward": "lunettes2"
+                }
+              ]
             }
           ]
         </code></pre>
