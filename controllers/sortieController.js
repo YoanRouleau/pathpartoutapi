@@ -3,6 +3,7 @@ const { Db } = require("mongodb");
 const { MongoClient } = require("mongodb");
 const validator = require("email-validator");
 const bcrypt = require('bcrypt');
+const { check_after_sortie } = require("./achievementController");
 
 const COLLLECTION_NAME = "sortie";
 
@@ -60,10 +61,12 @@ exports.create_sortie = function(req, res, sortieData){
     db.collection(COLLLECTION_NAME).insertOne(sortieData, function(err, sortieInserted){
         if(err)
             res.send(err)
-        else
-            res.json(200, {
-                "success": "Sortie créée"
-            })
+        else{
+            res.write(
+                "Sortie créée "
+            )
+            check_after_sortie(req, res, sortieData);
+        }
     })
 }
 

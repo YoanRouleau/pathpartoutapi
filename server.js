@@ -16,6 +16,7 @@ var randonneeRoutes = require('./routes/randonneeRoutes');
 var userRoutes = require('./routes/userRoutes');
 var sortieRoutes = require('./routes/sortieRoutes');
 var avisRoutes = require('./routes/avisRoutes');
+var achievementRoutes = require('./routes/achievementRoutes');
 
 var basicRoutes = require('./routes/basicRoutes');
 
@@ -34,7 +35,7 @@ randonneeRoutes(app);
 userRoutes(app);
 sortieRoutes(app);
 avisRoutes(app);
-
+achievementRoutes(app);
 basicRoutes(app);
 
 app.use(bodyParser.urlencoded({ extended: true }));
