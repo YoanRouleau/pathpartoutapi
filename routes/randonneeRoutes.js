@@ -23,5 +23,9 @@ module.exports = function(app){
         randonnee.get_Randonnee_GPX(request, response, id);
     })
 
+    app.post('/randonnee/add/photo', urlencodedParser, auth.checkUserPrivilege, function(request, response, next){
+        randonnee.add_randonnee_photo(request, response);
+    })
+
       
 };

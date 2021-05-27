@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, Db } = require("mongodb");
 
 const COLLLECTION_NAME = "randonnee";
 // const server = require("../server.js");
@@ -41,6 +41,24 @@ exports.get_Randonnee_GPX = function(req, res, id){
       res.json( { "error" : "Cette randonnée n'existe pas ou ne possède pas de GPX." } );
     else{
       res.json(result[0].gpx);
+    }
+  })
+}
+
+exports.add_randonnee_photo = function(req, res){
+  db.collection(COLLLECTION_NAME).findOne({ 'id': parseInt(req.body.randonneeId) }, function(err, rando){
+    if(err)
+      throw err;
+    if(!rando)
+      res.json({ "error" : "Randonnée introuvable." })
+    else{
+      db.collection(COLLLECTION_NAME).findOneAndUpdate({ 'id' : parseInt(req.body.randonneeId) }, { $addToSet : { images: req.body.imageUrl } }, function(err, result){
+        if(err) 
+          throw err
+        else{
+          res.json({ "success" : "L'image a été ajoutée à la randonnée."});
+        }
+      })
     }
   })
 }
