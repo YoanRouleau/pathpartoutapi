@@ -30,6 +30,31 @@ exports.create_avis = function(req, res){
     })
 }
 
+exports.create_avis_with_photo = function(req, res){
+    db.collection(COLLLECTION_NAME).find({ "userId": req.body.userId }).toArray(function(err, userFound){
+        console.log(userFound.length);
+        if(err) throw err;
+        if(userFound.length !== 0)
+            res.json( { "error": "Cet utilisateur a déjà écrit un avis pour cette randonnée."});
+        else{
+            var newAvis = {
+                "userId": req.body.userId,
+                "randonneeId": req.body.randonneeId,
+                "note": req.body.note,
+                "avis": req.body.avis,
+                "imageUrl": req.body.imageUrl,
+            }
+            db.collection(COLLLECTION_NAME).insertOne(newAvis, function(err, avisInserted){
+                if(err) throw err;
+
+                res.json(200, {
+                    "success": "L'avis a bien été crée."
+                })
+            })
+        }
+    })
+}
+
 exports.get_avis_by_randonnee = function(req, res){
     db.collection(COLLLECTION_NAME).aggregate([
         {

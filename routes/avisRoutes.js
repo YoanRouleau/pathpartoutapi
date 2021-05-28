@@ -13,6 +13,10 @@ module.exports = function(app){
         avis.create_avis(request, response);
     });
 
+    app.post('/avis/create/withimage', urlencodedParser, auth.checkUserPrivilege, function(request,response, next){
+        avis.create_avis_with_photo(request, response);
+    });
+
     app.post('/avis/get/randonnee', urlencodedParser, auth.checkUserPrivilege, function(request, response, next){
         avis.get_avis_by_randonnee(request, response);
     })
@@ -20,5 +24,6 @@ module.exports = function(app){
     app.post('/avis/get/user', urlencodedParser, auth.checkUserPrivilege, function(request, response, next){
         avis.get_avis_by_user(request, response);
     });
+
 
 }
